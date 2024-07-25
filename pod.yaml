@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: firt-pod
+spec:
+  containers:
+    - name: nginx
+      image: nginx:stable-alpine3.19-perl
+      ports:
+        - containerPort: 80
+          protocol: TCP
