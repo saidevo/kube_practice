@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata: 
+  name: nginx-server
+spec:
+  containers:
+    - name: nginx 
+      image: nginx:stable-alpine3.19-perl
+      command: 
+        - sleep
+      args: 
+        - 1d
+      ports: 
+        - containerPort: 80
+          protocol: TCP

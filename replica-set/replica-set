@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: replicaset-practice
+  labels:
+    app: jenkins
+    purpose: cicd
+spec:
+  restartPolicy: OnFailure
+  minReadySeconds: 5
+  replicas: 2
+  selector:
+    matchLabels:
+      app: jenkins
+  template:
+    metadata:
+      app: jenkins
+      purpose: cicd
+    spec:
+      containers: 
+        - name: jenkins
+          image: jenkins/jenkins:lts-jdk11
+          ports:
+            - containerPort: 8080
+              protocol: TCP
+      initContainers:
+        - name: alpine:3
+          image: alpine:3
+          command: ['sh', '-c', 'ping -c 4 google.com']

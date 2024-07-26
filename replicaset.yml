@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata: 
+  name: replica-demo 
+  labels:
+    app: nginx
+spec:
+  minReadySeconds: 5
+  replicas: 4
+  selector: 
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      name: replica-demo
+      labels:
+        app: nginx
+    spec:
+      containers: 
+        - image: nginx:stable-alpine3.19-perl        
+          name: nginx
+          ports:
+            - containerPort: 80
+              protocol: TCP
